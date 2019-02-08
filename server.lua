@@ -7,11 +7,20 @@ function map(func, array)
   return new_array
 end
 
+--[[ Get player info and return it back ]]
+function getPlayerInfo(player)
+    local info = {}
+    info.name = getPlayerName(player)
+    info.colour = {getPlayerNametagColor()}
+    info.position = {getElementPosition(player)}
+    return info
+end
+
 --[[ Get all players online ]]
 function getPlayersOnline()
     local players = getElementsByType("player")
     if #players > 0 then
-        players = map(getPlayerName, players) -- Return a table of strings instead of userdata
+        players = map(getPlayerInfo, players) -- Return a table of strings instead of userdata
     end
     return players
 end
